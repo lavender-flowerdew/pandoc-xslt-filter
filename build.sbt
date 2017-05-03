@@ -35,7 +35,9 @@ lazy val root = (project in file("."))
       de.johoop.jacoco4sbt.HTMLReport(encoding = "utf-8"),
       de.johoop.jacoco4sbt.ScalaHTMLReport(withBranchCoverage = true)),
     testOptions in IntegrationTest += Tests.Argument(TestFrameworks.ScalaTest, "-n", "org.scalatest.tags.Slow"),
-    headers := createFrom(Apache2_0, "2017", "Lavender Flowerdew"),
+    headers := Map(
+      "java" -> Apache2_0("2017", "Lavender Flowerdew")
+    ),
     test in assembly := {},
     assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
   )

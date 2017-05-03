@@ -20,6 +20,7 @@ import org.flowerdew.lavender._
 import org.scalatest._
 import org.scalatest.Matchers._
 import java.io._
+import org.json._
 
 class MainSpec extends BaseSpec {
   describe("Main") {
@@ -33,6 +34,21 @@ class MainSpec extends BaseSpec {
 
       // check
       output.toString("utf8") should equal ("Hi")
+    }
+  }
+
+  describe("JSON Library") {
+    it("should produce XML from JSON string") {
+      // set up
+      val input = """{"blocks":[{"t":"Para","c":[{"t":"Str","c":"Hello"}]}],"pandoc-api-version":[1,17,0,5],"meta":{}}"""
+      val json = new JSONObject(input)
+      val expected = """<rootdoc><pandoc-api-version>1</pandoc-api-version><pandoc-api-version>17</pandoc-api-version><pandoc-api-version>0</pandoc-api-version><pandoc-api-version>5</pandoc-api-version><blocks><c><c>Hello</c><t>Str</t></c><t>Para</t></blocks><meta></meta></rootdoc>"""
+
+      // test
+      val actual = XML.toString(json,"rootdoc")
+
+      // check
+      actual shouldBe expected
     }
   }
 }

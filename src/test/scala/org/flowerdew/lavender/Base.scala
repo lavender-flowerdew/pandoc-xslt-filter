@@ -19,7 +19,19 @@ package org.flowerdew.lavender
 import org.scalatest._
 
 class BaseSpec extends FunSpec {
+  def toXML(xmlString: String): scala.xml.Node =
+    scala.xml.XML.loadString(xmlString)
 
+  def pretty(xml: scala.xml.Node): String =
+    new scala.xml.PrettyPrinter(80, 4).format(xml)
+
+  def prettify(xmlStr: String): String =
+    pretty(toXML(xmlStr))
+
+  def dump(expectedXMLStr: String, actualXMLStr: String): Unit = {
+    info(s"Expected: \n${prettify(expectedXMLStr)}")
+    info(s"Got: \n${prettify(actualXMLStr)}")
+  }
 }
 
 @DoNotDiscover // Disable discovery of a test class
