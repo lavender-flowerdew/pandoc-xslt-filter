@@ -30,6 +30,7 @@ lazy val root = (project in file("."))
     Defaults.itSettings,
     parallelExecution in IntegrationTest := false,
     parallelExecution in jacoco.Config := false,
+    jacoco.excludes in jacoco.Config := Seq("org.json.*"),
     jacoco.reportFormats in jacoco.Config := Seq(
       de.johoop.jacoco4sbt.XMLReport(encoding = "utf-8"),
       de.johoop.jacoco4sbt.HTMLReport(encoding = "utf-8"),
