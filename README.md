@@ -13,4 +13,11 @@ Run:
 `sbt clean jacoco:cover assembly`
 
 ## To Do
-- [ ] Add xslt library
+- [x] Add xslt library
+- [ ] Add support for ditaa library and convert png to base64
+- [ ] Add support for uchen
+```
+ByteArrayOutputStream output = new ByteArrayOutputStream();
+ImageIO.write(image, "png", output);
+DatatypeConverter.printBase64Binary(output.toByteArray());
+```
