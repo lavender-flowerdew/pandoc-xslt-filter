@@ -10,7 +10,7 @@ Java wrapper then it will be converted to Scala.
 
 Run:
 
-`sbt clean jacoco:cover`
+`sbt clean jacoco:cover assembly`
 
 ## To Do
 - [ ] Add xslt library
